@@ -1,0 +1,436 @@
+# Architecture compatibility test matrix.
+#
+# Each entry maps a model to a ModelScope repo id (or an already-present local
+# dir). Phase 1 (smoke) only fetches config+tokenizer (~KB-MB). Phase 2 (real)
+# fetches full weights; entries with `real: false` exceed the local 30GB/GPU
+# budget and are smoke-only.
+#
+# repo: "local:/abs/path" means the weights already exist at that path.
+
+models:
+  - name: Falcon-H1-0.5B
+    arch: FalconH1ForCausalLM
+    repo: "tiiuae/Falcon-H1-0.5B-Instruct"
+    real: true
+
+  - name: GLM4-9B-0414
+    arch: Glm4ForCausalLM
+    repo: "ZhipuAI/GLM-4-9B-0414"
+    real: true
+
+  - name: mamba-130m-hf 
+    arch: MambaForCausalLM
+    repo: "AI-ModelScope/mamba-130m-hf"
+    real: true 
+  
+  - name: mamba-codestral-7B
+    arch: Mamba2ForCausalLM
+    repo: "AI-ModelScope/mamba-codestral-7B-v0.1"
+    real: true
+  
+  - name: Mellum2-12B
+    arch: MellumForCausalLM
+    repo: "JetBrains/Mellum2-12B-A2.5B-Base"
+    real: true
+    skip: "vLLM AutoWeightsLoader/RoutedExperts prefix mismatch leaves mlp.experts.{i}.(gate/up/down)_proj unloaded (MoE loading gap); unsupported"
+
+  - name: Nemotron-H-8B
+    arch: NemotronHForCausalLM
+    repo: "nv-community/Nemotron-H-8B-Base-8K"
+    real: true
+  
+  - name: OLMoE-7B
+    arch: OlmoeForCausalLM
+    repo: "allenai/OLMoE-1B-7B-0924-Instruct"
+    real: true
+    skip: "vLLM AutoWeightsLoader/RoutedExperts prefix mismatch leaves mlp.experts.{i}.w1/w2/w3 unloaded (MoE loading gap); unsupported"
+
+  - name: Apertus-8B 
+    arch: ApertusForCausalLM
+    family: apertus 
+    repo: "swiss-ai/Apertus-8B-2509"
+    real: true 
+    risk: dense 
+
+  - name: AFM-4.5B
+    arch: ArceeForCausalLM
+    family: arcee 
+    repo: "arcee-ai/AFM-4.5B-Base"
+    real: true 
+    risk: dense
+
+  - name: bloom-7b
+    arch: BloomForCausalLM
+    repo: "bigscience/bloom-7b1"
+    real: true
+    max_model_len: 2048
+
+  - name: chatglm3-6b
+    arch: ChatGLMForCausalLM   # config architectures: ["ChatGLMModel"] -> vLLM ChatGLMForCausalLM
+    family: glm
+    repo: "ZhipuAI/chatglm3-6b"
+    real: true
+    risk: dense
+
+  - name: glm-4-9b-chat
+    arch: ChatGLMForCausalLM   # config architectures: ["ChatGLMModel"] -> vLLM ChatGLMForCausalLM
+    family: glm
+    repo: "ZhipuAI/glm-4-9b-chat"
+    real: true
+    risk: dense
+
+  - name: Command-R7B
+    arch: CohereForCausalLM
+    repo: "CohereLabs/c4ai-command-r7b-12-2024"
+    real: true 
+    risk: dense
+
+  - name: DeepSeek-V2-Lite
+    arch: DeepseekV2ForCausalLM
+    family: deepseek
+    repo: "deepseek-ai/DeepSeek-V2-Lite"
+    real: false
+    risk: mla
+
+  - name: Dots-ocr
+    arch: DotsOCRForCausalLM
+    repo: "dots-studio/dots.ocr"
+    real: true
+
+  - name: ERNIE4.5-0.3B
+    arch: Ernie4_5ForCausalLM
+    repo: "PaddlePaddle/ERNIE-4.5-0.3B-PT"
+    real: true
+
+  - name: Exaone4-1.2B
+    arch: Exaone4ForCausalLM
+    repo: "LGAI-EXAONE/EXAONE-4.0-1.2B"
+    real: true
+
+  - name: Exaone3-7.8B
+    arch: ExaoneForCausalLM
+    repo: "LGAI-EXAONE/EXAONE-3.0-7.8B-Instruct"
+    real: true
+
+  - name: Falcon-rw-7B 
+    arch: FalconForCausalLM
+    repo: "tiiuae/falcon-rw-7b"
+    real: true
+
+  - name: FalconMamba-7B
+    arch: FalconMambaForCausalLM
+    repo: "CaiJichang/falcon-mamba-7b-instruct"
+    real: true
+
+  - name: gemma-2-2b-it
+    arch: Gemma2ForCausalLM
+    family: gemma
+    repo: "LLM-Research/gemma-2-2b-it"
+    real: true
+    risk: dense
+
+  - name: gemma-2-9b-it
+    arch: Gemma2ForCausalLM   # attn_logit_softcapping=30.0; requires soft-cap-aware attention backend
+    family: gemma
+    repo: "LLM-Research/gemma-2-9b-it"
+    real: true
+    risk: dense
+
+  - name: gemma-3-1b-it
+    arch: Gemma3ForCausalLM   # gemma-3-1b config architectures: ["Gemma3ForCausalLM"] (4B+ uses Gemma3ForConditionalGeneration)
+    family: gemma
+    repo: "LLM-Research/gemma-3-1b-it"
+    real: true
+    risk: multimodal
+
+  - name: Gemma3n # timm required
+    arch: Gemma3nForConditionalGeneration
+    repo: "google/gemma-3n-E2B-it"
+    real: true
+
+  - name: Gemma4-E2B 
+    arch: Gemma4ForConditionalGeneration
+    repo: "google/gemma-4-E2B-it"
+    real: true
+
+  - name: gemma1.1-2b
+    arch: GemmaForCausalLM
+    repo: "google/gemma-1.1-2b-it"
+    real: true
+
+  - name: Gemma1.1-2B
+    arch: GemmaForCausalLM
+    repo: "google/gemma-1.1-2b-it"
+    real: true 
+
+  - name: glm-4-9b-chat-hf
+    arch: GlmForCausalLM
+    repo: "ZhipuAI/glm-4-9b-chat-hf"
+    real: true 
+
+  - name: gpt2
+    arch: GPT2LMHeadModel
+    repo: "AI-ModelScope/gpt2"
+    real: true
+  
+  - name: gpt-j-6b
+    arch: GPTJForCausalLM
+    repo: "AI-ModelScope/gpt-j-6b"
+    real: true
+
+  - name: pythia-12b
+    arch: GPTNeoXForCausalLM
+    repo: "EleutherAI/pythia-12b"
+    real: true
+
+  - name: Granite3-2B 
+    arch: GraniteForCausalLM
+    family: granite 
+    repo: "AI-ModelScope/granite-3.0-2b-instruct/"
+    real: true 
+    risk: dense
+
+  - name: granite-3.0-1b
+    arch: GraniteMoeForCausalLM
+    repo: "ibm-granite/granite-3.0-1b-a400m-base"
+    real: true
+  
+  - name: granite4-tiny
+    arch: GraniteMoeHybridForCausalLM
+    repo: "ibm-granite/granite-4.0-tiny-preview"
+    real: true
+
+  - name: HRM-1B 
+    arch: HrmTextForCausalLM
+    repo: "sapientinc/HRM-Text-1B"
+    real: true
+
+  - name: Hunyuan-7B 
+    arch: HunYuanDenseV1ForCausalLM
+    repo: "Tencent-Hunyuan/Hunyuan-7B-Instruct"
+    real: true
+
+  - name: InternLM2.5-7B 
+    arch: InternLM2ForCausalLM
+    family: internlm 
+    repo: "Shanghai_AI_Laboratory/internlm2_5-7b-chat"
+    real: true 
+    risk: dense 
+
+  - name: Hyper-14B
+    arch: HyperCLOVAXForCausalLM
+    repo: "naver-hyperclovax/HyperCLOVAX-SEED-Think-14B"
+    real: true
+    
+  - name: InternLM3-8B
+    arch: InternLM3ForCausalLM
+    repo: "Shanghai_AI_Laboratory/internlm3-8b-instruct"
+    real: true
+
+  - name: IQuest-7B
+    arch: IQuestCoderForCausalLM
+    repo: "IQuestLab/IQuest-Coder-V1-7B-Instruct"
+    real: true
+
+  - name: Jais2-8B 
+    arch: Jais2ForCausalLM
+    repo: "inceptionai/Jais-2-8B-Chat"
+    real: true 
+
+  - name: LFM2.5-350M
+    arch: Lfm2ForCausalLM
+    repo: "LiquidAI/LFM2.5-350M"
+    real: true 
+  
+  - name: LFM2.5-8B-A1B
+    arch: Lfm2MoeForCausalLM
+    repo: "LiquidAI/LFM2.5-8B-A1B"
+    real: true
+    skip: "vLLM AutoWeightsLoader/RoutedExperts prefix mismatch leaves experts.{i}.w1/w2/w3 unloaded (MoE loading gap); unsupported"
+
+  - name: Llama-2-13B
+    arch: LlamaForCausalLM
+    family: llama
+    repo: "local:/srv/models/Llama/Llama-2-13b-chat-ms"
+    real: true
+    risk: dense
+
+  - name: Llama-3.2-1B
+    arch: LlamaForCausalLM
+    family: llama
+    repo: "LLM-Research/Llama-3.2-1B-Instruct"
+    real: true
+    risk: dense
+
+  - name: Yi-1.5-6B-Chat
+    arch: LlamaForCausalLM   # Yi-1.5 config architectures: ["LlamaForCausalLM"] (YiForCausalLM not in vLLM registry)
+    family: yi
+    repo: "01ai/Yi-1.5-6B-Chat"
+    real: true
+    risk: dense
+
+  - name: Mamba2-2.7B
+    arch: Mamba2ForCausalLM
+    family: ssm
+    repo: ""            # not on ModelScope; deferred (ssh transfer required)
+    real: false
+    risk: ssm
+    skip: "not on ModelScope; needs ssh transfer"
+
+  - name: MiMo-7B 
+    arch: MiMoForCausalLM
+    repo: "XiaomiMiMo/MiMo-7B-RL"
+    real: true
+
+  - name: MiniCPM3-4B 
+    arch: MiniCPM3ForCausalLM
+    repo: "OpenBMB/MiniCPM3-4B"
+    real: true
+
+  - name: MiniCPM-1B 
+    arch: MiniCPMForCausalLM
+    repo: "OpenBMB/MiniCPM-S-1B-sft"
+    real: true
+
+  - name: Mistral-7B-v0.3
+    arch: MistralForCausalLM
+    family: mistral
+    repo: "mistralai/Mistral-7B-Instruct-v0.3"
+    real: true
+    risk: dense
+
+  - name: Mixtral-8x7B-v0.1
+    arch: MixtralForCausalLM
+    family: mistral
+    repo: "AI-ModelScope/Mixtral-8x7B-Instruct-v0.1"
+    real: false
+    risk: moe
+
+  - name: mpt-7b 
+    arch: MPTForCausalLM
+    repo: "mosaicml/mpt-7b"
+    real: true 
+
+  - name: Minitron-8B 
+    arch: NemotronForCausalLM
+    repo: "nv-community/Minitron-8B-Base"
+    real: true
+
+  - name: Olmo3-7B 
+    arch: Olmo3ForCausalLM
+    repo: "allenai/Olmo-3-7B-Instruct"
+    real: true
+
+  - name: Olmo-Hybrid-7B 
+    arch: OlmoHybridForCausalLM
+    repo: "allenai/Olmo-Hybrid-Instruct-SFT-7B"
+    real: true
+
+  - name: opt-125m
+    arch: OPTForCausalLM
+    repo: "facebook/opt-125m"
+    real: true
+
+  - name: Orion-14B
+    arch: OrionForCausalLM
+    repo: "OrionStarAI/Orion-14B-Chat"
+    real: true
+
+  - name: Ouro-1.4B
+    arch: OuroForCausalLM
+    repo: "bytedance-community/Ouro-1.4B"
+    real: true
+
+  - name: openPangu-7B
+    arch: PanguEmbeddedForCausalLM
+    repo: "openpangu/openPangu-Embedded-7B-V1.1"
+    real: true
+
+  - name: Phi-3-mini-4k
+    arch: Phi3ForCausalLM
+    family: phi
+    repo: "LLM-Research/Phi-3-mini-4k-instruct"
+    real: true
+    risk: dense
+
+  - name: phi-2
+    arch: PhiForCausalLM
+    repo: "microsoft/phi-2"
+    real: true
+
+  - name: plamo2-1b
+    arch: Plamo2ForCausalLM
+    repo: "pfnet/plamo-2-1b"
+    real: true
+    risk: mamba
+    max_model_len: 8192
+  
+  - name: plamo3-2b
+    arch: Plamo3ForCausalLM
+    repo: "pfnet/plamo-3-nict-2b-base"
+    real: true
+
+  - name: Qwen2.5-VL-3B
+    arch: Qwen2_5_VLForConditionalGeneration
+    family: qwen
+    repo: "Qwen/Qwen2.5-VL-3B-Instruct"
+    real: true
+    risk: multimodal
+
+  - name: Qwen2.5-1.5B
+    arch: Qwen2ForCausalLM
+    family: qwen
+    repo: "local:/srv/models/Qwen/Qwen2.5-1.5B-Instruct"
+    real: true
+    risk: dense
+  
+  - name: Qwen1.5-MoE
+    arch: Qwen2MoeForCausalLM
+    repo: "Qwen/Qwen1.5-MoE-A2.7B-Chat"
+    real: true
+    skip: "vLLM AutoWeightsLoader/RoutedExperts prefix mismatch leaves mlp.experts.{i}.w1/w2/w3 unloaded (MoE loading gap); unsupported"
+
+
+  - name: Qwen3.5-0.8B
+    arch: Qwen3_5ForConditionalGeneration
+    family: qwen
+    repo: "local:/srv/models/Qwen/Qwen3.5-0.8B"
+    real: true
+    risk: multimodal
+
+  - name: Qwen3-4B
+    arch: Qwen3ForCausalLM
+    family: qwen
+    repo: "local:/srv/models/Qwen/Qwen3-4B"
+    real: true
+    risk: dense
+
+  - name: Qwen3-30B-A3B
+    arch: Qwen3MoeForCausalLM
+    family: qwen
+    repo: "Qwen/Qwen3-30B-A3B"
+    real: true
+    risk: moe
+
+  - name: StableLM-3B
+    arch: StablelmForCausalLM
+    family: stable 
+    repo: "stabilityai/stablelm-3b-4e1t"
+    real: true 
+    risk: dense 
+
+  - name: TeleChat2-3B
+    arch: TeleChat2ForCausalLM
+    repo: "TeleAI/TeleChat2-3B"
+    real: true
+
+  - name: TeleChat3-1.8B
+    arch: TeleChat3ForCausalLM
+    repo: "TeleAI/TeleChat3-1.8B-0715"
+    real: true
+    skip: "vLLM llama mapping lacks TeleChat3 embedding projection (embedding_size=1024 != hidden_size=2048); unsupported"
+
+  - name: Zamba2-1.2B
+    arch: Zamba2ForCausalLM
+    repo: "Zyphra/Zamba2-1.2B-instruct"
+    real: true

@@ -1,0 +1,4 @@
+# Shared runtime dependencies only; this file does not build Aegaeon.
+# For a complete source-build environment, choose requirements-cu129.txt or
+# requirements-cu130.txt, then install the local project explicitly.
+-r requirements-common.txt

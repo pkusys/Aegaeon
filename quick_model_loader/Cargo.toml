@@ -1,0 +1,17 @@
+[package]
+name = "rsrc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pyo3 = { version = "0.21.2", features = ["extension-module", "abi3-py310"] }
+safetensors = "0.4.3"
+memmap2 = "0.9"
+serde = {version = "1.0", features = ["derive"]}
+serde_json = "1.0"
+
+[lib]
+# See https://github.com/PyO3/pyo3 for details
+name = "_rlib"  # private module to be nested into Python package
+crate-type = ["cdylib"]
+path = "rsrc/lib.rs"

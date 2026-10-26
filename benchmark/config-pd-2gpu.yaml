@@ -1,0 +1,26 @@
+server:
+  cpu_num_slabs: 16
+  cpu_slab_size_bytes: 1073741824
+  memory_utilization: 0.75
+  worker_num_cpus: 4
+  nnodes: 1
+  num_prefill_engines: 1
+  num_decode_engines: 1
+  num_engines: 0
+  startup_models:
+    - qwen2_5_7b
+    - qwen2_1_5b
+
+# Match the synth_model_00/01 mapping used by aegaeon/test_api.py.
+models:
+  - name: qwen2_5_7b
+    path: /srv/models/Qwen/Qwen2.5-7B-Instruct/
+    profile: qwen2_5_7b
+  - name: qwen2_1_5b
+    path: /srv/models/Qwen/Qwen2.5-1.5B-Instruct/
+    profile: Qwen/Qwen2.5-1.5B-Instruct
+
+devices:
+  - name: A100_40GB
+    memory: 39
+    bandwidth: 32

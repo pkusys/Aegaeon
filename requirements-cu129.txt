@@ -1,0 +1,10 @@
+# CUDA 12.9 / CPython 3.10 source-build environment.
+-r requirements-common.txt
+-r requirements-build.txt
+
+torch @ https://download-r2.pytorch.org/whl/cu129/torch-2.11.0%2Bcu129-cp310-cp310-manylinux_2_28_x86_64.whl
+vllm @ https://wheels.vllm.ai/568afb3a13806beb53bb2e6bd518269357b237c0/vllm-0.26.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl
+torchaudio @ https://download-r2.pytorch.org/whl/cu129/torchaudio-2.11.0%2Bcu129-cp310-cp310-manylinux_2_28_x86_64.whl
+torchvision @ https://download-r2.pytorch.org/whl/cu129/torchvision-0.26.0%2Bcu129-cp310-cp310-manylinux_2_28_x86_64.whl
+torchcodec @ https://download.pytorch.org/whl/cu129/torchcodec-0.15.0%2Bcu129-cp310-cp310-manylinux_2_28_x86_64.whl
+cupy-cuda12x

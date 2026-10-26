@@ -1,0 +1,22 @@
+Request Time,Model Name,Input Length,Output Length
+00:00:03.071,synth_model_01,619,503
+00:00:06.799,synth_model_00,1275,141
+00:00:16.995,synth_model_00,41,297
+00:00:17.193,synth_model_00,252,202
+00:00:17.216,synth_model_00,429,108
+00:00:17.993,synth_model_01,1301,130
+00:00:18.363,synth_model_01,4,84
+00:00:19.716,synth_model_01,51,312
+00:00:22.719,synth_model_00,302,342
+00:00:30.018,synth_model_01,545,538
+00:00:37.764,synth_model_01,633,162
+00:00:39.018,synth_model_00,64,794
+00:00:45.754,synth_model_00,1873,124
+00:00:53.307,synth_model_00,27,325
+00:00:55.140,synth_model_01,5,227
+00:00:59.277,synth_model_01,223,23
+00:01:03.759,synth_model_01,985,298
+00:01:21.475,synth_model_00,24,239
+00:01:22.280,synth_model_01,975,271
+00:01:39.532,synth_model_01,963,155
+00:01:42.767,synth_model_01,1704,114

@@ -1,0 +1,20 @@
+server:
+  # KV cache
+  cpu_num_slabs: 16
+  cpu_slab_size_bytes: 1073741824
+
+  # resources
+  memory_utilization: 0.775       # recommended
+  worker_num_cpus: 4
+
+  # server config
+  # One physical machine with one GPU is one Ray node and one engine.
+  nnodes: 1
+  num_prefill_engines: 0
+  num_decode_engines: 0
+  num_engines: 1
+
+  # Model cache size
+  model_cache_size_gb: 20
+
+  dummy_weights: false
