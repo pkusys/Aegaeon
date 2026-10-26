@@ -1,0 +1,18 @@
+include README.md requirements*.txt pyproject.toml
+include aegaeon_cuda.py aegaeon_build_backend.py
+recursive-include ops *.cpp *.cu *.h
+prune web
+prune plots
+prune sim/plots
+exclude aegaeon/energy.py
+exclude benchmark/benchmark_energy.py benchmark/demo-energy-pd-config.yaml
+exclude tools/energy_request.py tools/gpu_clock_search.py tools/pd_clock_search.py tools/aegaeon-gpu-clock
+exclude tests/test_energy_control.py
+
+include LICENSE quick_model_loader/Cargo.toml quick_model_loader/Cargo.lock
+recursive-include quick_model_loader/quick_model_loader *.py
+recursive-include quick_model_loader/rsrc *.rs
+recursive-include profiles *.json
+prune quick_model_loader/target
+prune quick_model_loader/build
+global-exclude *.py[cod] *.so

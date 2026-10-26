@@ -1,0 +1,12 @@
+{
+  "model": "Qwen/Qwen3-4B",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Explain KV Cache in one sentence."
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 64,
+  "stream": false
+}

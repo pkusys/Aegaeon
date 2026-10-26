@@ -1,0 +1,4 @@
+[build-system]
+requires = ["setuptools>=64,<82", "wheel", "setuptools-rust>=1.13", "packaging>=24", "auditwheel>=6.8", "patchelf>=0.17"]
+build-backend = "aegaeon_build_backend"
+backend-path = ["."]

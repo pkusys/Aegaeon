@@ -1,0 +1,42 @@
+server:
+  # KV cache
+  cpu_num_slabs: 16
+  cpu_slab_size_bytes: 1073741824
+
+  # resources
+  memory_utilization: 0.775
+  worker_num_cpus: 4
+
+  # One physical machine with two GPUs: GPU 0 prefill, GPU 1 decode.
+  nnodes: 1
+  num_prefill_engines: 1
+  num_decode_engines: 1
+  num_engines: 0
+
+  model_cache_size_gb: 16
+
+  cuda_graph:
+    mode: save
+    archive_dir: /srv/aegaeon-archives/foundry-vmm/qwen3-4b-bs64-seq4096
+    batch_sizes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+    # One graph per batch size. During capture, max_seq_len is fixed to 4096
+    # while the device seq_lens tensor remains runtime-updateable, covering
+    # every concrete sequence length from 1 through 4096.
+    seq_len_buckets: [4096]
+    base_address: "0x400000000000"
+    region_size_bytes: 274877906944
+    scratch_size_bytes: 4294967296
+    strict: true
+
+models:
+  - name: Qwen/Qwen3-4B
+    path: /srv/models/Qwen/Qwen3-4B
+    params: 4.1
+    profile: Qwen/Qwen3-4B
+    enabled: true
+
+devices:
+  - name: A100_40GB
+    memory: 39
+    bandwidth: 32
+    profile: A100-PCIE-40GB

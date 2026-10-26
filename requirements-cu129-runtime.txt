@@ -1,0 +1,25 @@
+# Runtime dependencies for the prebuilt CUDA 12.9 / CPython 3.10 wheel.
+# No Aegaeon build-tool requirements are included.
+aiohttp>=3.9
+fastapi>=0.115
+pydantic>=2.0
+PyYAML>=6.0
+uvicorn>=0.30
+modelscope>=1.22.0
+matplotlib>=3.10.0
+numpy
+psutil
+ray>=2.23.0
+safetensors>=0.4.5
+scikit_learn>=1.6.0
+tomli; python_version < "3.11"
+viztracer
+simpy==4.1.1
+aenum
+
+torch @ https://download-r2.pytorch.org/whl/cu129/torch-2.11.0%2Bcu129-cp310-cp310-manylinux_2_28_x86_64.whl
+vllm @ https://wheels.vllm.ai/568afb3a13806beb53bb2e6bd518269357b237c0/vllm-0.26.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl
+torchaudio @ https://download-r2.pytorch.org/whl/cu129/torchaudio-2.11.0%2Bcu129-cp310-cp310-manylinux_2_28_x86_64.whl
+torchvision @ https://download-r2.pytorch.org/whl/cu129/torchvision-0.26.0%2Bcu129-cp310-cp310-manylinux_2_28_x86_64.whl
+torchcodec @ https://download.pytorch.org/whl/cu129/torchcodec-0.15.0%2Bcu129-cp310-cp310-manylinux_2_28_x86_64.whl
+cupy-cuda12x

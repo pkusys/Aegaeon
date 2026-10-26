@@ -1,0 +1,12 @@
+# CPU-only simulator environment for the repository profiles and workloads.
+# Python 3.10; serving/Torch/vLLM/CUDA dependencies are not required.
+aenum==3.1.17
+typing_extensions==4.16.0
+simpy==4.1.1
+numpy==2.2.6
+scipy==1.15.3
+scikit-learn==1.7.2
+matplotlib==3.10.9
+joblib==1.5.3
+threadpoolctl==3.6.0
+pytest==9.1.1

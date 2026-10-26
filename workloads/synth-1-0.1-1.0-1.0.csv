@@ -1,0 +1,10 @@
+Request Time,Model Name,Input Length,Output Length
+00:00:06.799,synth_model_00,1275,141
+00:00:16.995,synth_model_00,41,297
+00:00:17.193,synth_model_00,252,202
+00:00:17.216,synth_model_00,429,108
+00:00:22.719,synth_model_00,302,342
+00:00:39.018,synth_model_00,64,794
+00:00:45.754,synth_model_00,1873,124
+00:00:53.307,synth_model_00,27,325
+00:01:21.475,synth_model_00,24,239
