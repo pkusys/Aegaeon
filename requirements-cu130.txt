@@ -1,0 +1,11 @@
+# CUDA 13.0 / CPython 3.10 source-build environment.
+# Strict public versions exclude installed CUDA 12.9 variants.
+-r requirements-common.txt
+-r requirements-build.txt
+
+torch===2.11.0
+vllm===0.26.0
+torchaudio===2.11.0
+torchvision===0.26.0
+torchcodec===0.15.0
+cupy-cuda13x

@@ -1,0 +1,4 @@
+# these files are used to store simulation data
+!*.csv
+!*.json
+logs/

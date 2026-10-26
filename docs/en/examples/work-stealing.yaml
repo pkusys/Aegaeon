@@ -1,0 +1,31 @@
+# Adjust model paths, GPU, profiles, and memory budgets for your environment.
+server:
+  nnodes: 1
+  num_engines: 0
+  num_prefill_engines: 1
+  num_decode_engines: 2
+  tensor_parallel_size: 1
+  worker_num_cpus: 4
+  cpu_num_slabs: 8
+  cpu_slab_size_bytes: 1073741824
+  model_cache_size_gb: 20
+  memory_utilization: 0.775
+  dummy_weights: false
+  startup_models:
+  - Qwen/Qwen3-4B
+  model_placement_policy: least-loaded
+  request_routing_policy: least-outstanding
+  cuda_graph:
+    mode: 'off'
+  decode_work_stealing: true
+  decode_work_stealing_min_batch_gap: 2
+models:
+- name: Qwen/Qwen3-4B
+  path: /srv/models/Qwen3-4B
+  profile: Qwen/Qwen3-4B
+  max_model_len: 4096
+devices:
+- name: A100_40GB
+  memory: 39
+  bandwidth: 32
+  profile: A100-PCIE-40GB

@@ -1,0 +1,86 @@
+site_name: Aegaeon
+site_description: 以 Token 级自动扩缩容驱动高效的模型即服务。
+site_url: https://pkusys.github.io/aegaeon/zh/
+docs_dir: docs/zh
+site_dir: site/zh
+hooks:
+- docs/mkdocs_hooks.py
+theme:
+  name: material
+  custom_dir: docs/overrides
+  language: zh
+  logo: assets/aegaeon-mark.svg
+  favicon: assets/aegaeon-mark.svg
+  font: false
+  palette:
+    primary: white
+    accent: indigo
+  features:
+  - navigation.tabs
+  - navigation.sections
+  - navigation.top
+  - navigation.footer
+  - search.suggest
+  - search.highlight
+  - content.code.copy
+extra_css:
+- assets/docs.css
+plugins:
+- search
+markdown_extensions:
+- admonition
+- tables
+- fenced_code
+- toc:
+    permalink: true
+    slugify: !!python/object/apply:pymdownx.slugs.slugify
+      kwds:
+        case: lower
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format
+nav:
+- 首页: index.md
+- 用户指南:
+  - 开始使用:
+    - 快速开始: quickstart.md
+    - 安装: installation.md
+    - 模型准备: models.md
+    - 功能与兼容性: capabilities.md
+  - 推理与部署:
+    - 在线推理: serving.md
+    - 生成参数: generation.md
+    - 模型管理: model-management.md
+    - 分布式部署: deployment.md
+    - 内存与KV Cache: memory.md
+  - 进阶功能:
+    - Decode Work Stealing: work-stealing.md
+    - CUDA Graph与Foundry: cuda-graphs.md
+  - 运维与示例:
+    - 日志与监控: observability.md
+    - 故障排查: troubleshooting.md
+    - 配置示例: examples/README.md
+- 开发者指南:
+  - 系统架构: architecture.md
+  - 调度与SLO: scheduling.md
+- 基准测试:
+  - 基准测试指南: benchmarking.md
+  - Profiling: profiling.md
+- API 参考:
+  - HTTP API: api.md
+  - Python API: python-api.md
+  - 配置参考: configuration.md
+  - 环境变量: environment.md
+- CLI 参考:
+  - 命令行接口: cli.md
+copyright: Aegaeon · Apache-2.0
+extra:
+  alternate:
+  - name: 中文
+    link: ../zh/
+    lang: zh
+  - name: English
+    link: ../en/
+    lang: en

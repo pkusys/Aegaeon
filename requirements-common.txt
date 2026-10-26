@@ -1,0 +1,16 @@
+aiohttp>=3.9
+fastapi>=0.115
+pydantic>=2.0
+PyYAML>=6.0
+uvicorn>=0.30
+modelscope>=1.22.0
+matplotlib>=3.10.0
+numpy
+psutil
+ray>=2.23.0
+safetensors>=0.4.5
+scikit_learn>=1.6.0
+tomli; python_version < "3.11"
+viztracer
+simpy==4.1.1
+aenum

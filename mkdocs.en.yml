@@ -1,0 +1,86 @@
+site_name: Aegaeon
+site_description: Efficient Model-as-a-Service, powered by token-level autoscaling.
+site_url: https://pkusys.github.io/aegaeon/en/
+docs_dir: docs/en
+site_dir: site/en
+hooks:
+- docs/mkdocs_hooks.py
+theme:
+  name: material
+  custom_dir: docs/overrides
+  language: en
+  logo: assets/aegaeon-mark.svg
+  favicon: assets/aegaeon-mark.svg
+  font: false
+  palette:
+    primary: white
+    accent: indigo
+  features:
+  - navigation.tabs
+  - navigation.sections
+  - navigation.top
+  - navigation.footer
+  - search.suggest
+  - search.highlight
+  - content.code.copy
+extra_css:
+- assets/docs.css
+plugins:
+- search
+markdown_extensions:
+- admonition
+- tables
+- fenced_code
+- toc:
+    permalink: true
+    slugify: !!python/object/apply:pymdownx.slugs.slugify
+      kwds:
+        case: lower
+- pymdownx.superfences:
+    custom_fences:
+    - name: mermaid
+      class: mermaid
+      format: !!python/name:pymdownx.superfences.fence_code_format
+nav:
+- Home: index.md
+- User Guide:
+  - Getting Started:
+    - Quickstart: quickstart.md
+    - Installation: installation.md
+    - Model Preparation: models.md
+    - Features and Compatibility: capabilities.md
+  - Inference and Deployment:
+    - Online Inference: serving.md
+    - Generation Parameters: generation.md
+    - Model Management: model-management.md
+    - Distributed Deployment: deployment.md
+    - Memory and KV Cache: memory.md
+  - Advanced Features:
+    - Decode Work Stealing: work-stealing.md
+    - CUDA Graphs and Foundry: cuda-graphs.md
+  - Operations and Examples:
+    - Logs and Monitoring: observability.md
+    - Troubleshooting: troubleshooting.md
+    - Configuration Examples: examples/README.md
+- Developer Guide:
+  - Architecture: architecture.md
+  - Scheduling and SLOs: scheduling.md
+- Benchmarking:
+  - Benchmarking Guide: benchmarking.md
+  - Profiling: profiling.md
+- API Reference:
+  - HTTP API: api.md
+  - Python API: python-api.md
+  - Configuration Reference: configuration.md
+  - Environment Variables: environment.md
+- CLI Reference:
+  - Command-Line Interface: cli.md
+copyright: Aegaeon · Apache-2.0
+extra:
+  alternate:
+  - name: 中文
+    link: ../zh/
+    lang: zh
+  - name: English
+    link: ../en/
+    lang: en

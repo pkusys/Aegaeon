@@ -1,0 +1,7 @@
+# Build tools for pip install --no-build-isolation -e .
+setuptools>=64,<82
+wheel
+setuptools-rust>=1.13
+packaging>=24
+auditwheel>=6.8
+patchelf>=0.17
